@@ -36,7 +36,7 @@ Bullet points at the start of sections highlight specific topics covered by the 
 
 :computer: Bob shares the commit(s) with Alice : click on `push` to publish the local commits on GitHub. To see the new version, Alice clicks on `pull`. Check that the code on Alice's computer now matches the modifications the Bob `commit`ed and  `push`ed.
 
-:computer: What if Alice wants to add a comment to the new code ? After `pull`ing Bob's changes, Alice can make new changes, for example adding a comment, `add` the file, `commit` the change, and `push` it.
+:computer: What if Alice wants to add a comment to the new code ? After `pull`ing Bob's changes, Alice can make new changes, for example adding a comment, `add` the file, `commit` the change, and `push` it. Don't forget to also `pull` Alice's changes on Bob's computer !
 
 ## 1b - falling back to older versions
 
@@ -44,7 +44,11 @@ Bullet points at the start of sections highlight specific topics covered by the 
 
 :golf: The next day, Bob realises that there is probably a better solution for the project than to manually write a function for each integer that could possibly be added.
 
-:computer: Bob checks the commit history (also called `git log`, History button in the Git panel), and Bob can click on the commit before the commit where they added the new function. Click on "view file": you can see the file as it was before ! The weird characters next to "view file" are the `commit hash`: they uniquely idendify each commit in the project. Bob can copy-paste the old version and paste it in place of the new one.
+:computer: Bob checks the commit history (also called `git log`, History button in the Git panel), and Bob can click on the commit before the commit where they added the new function. Click on "view file": you can see the file as it was before !
+
+:clipboard: The weird characters next to "view file" are the `commit hash`: they uniquely idendify each commit in the project.
+
+:computer: Bob can copy-paste the old version and paste it in place of the new one, and create a commit that says that Bob falled back to an older version. Don't forget to `push` this change to GitHub and `pull` it to Alice's computer ! 
 
 :clipboard: (Optional) Alternatively, typing `git checkout <hash>` in the terminal allows to restore the working directory to how it was at the specific commit hash. Type `git checkout main` to go back to the current state. Typing `git revert <hash>` in the terminal creates a commits that cancels the changes of the given commit. Reverting several commits at once is possible with `git revert <hash1> <hash2> <hash3>`.
 
@@ -58,11 +62,11 @@ Bullet points at the start of sections highlight specific topics covered by the 
 
 - `branch`, `checkout`
 
-:golf: After a few tests, Bob realises that their function is not very computationally efficient and wants to improve it. However, Alice needs the existing version to stay available on GitHub because she's leaving for a seminar where she wants to show other people how to add integers. She also wants to be able to add more example to main.R.
+:golf: After a few tests, Bob realises that their function is not very computationally efficient and wants to improve it. However, Alice needs the existing version to stay available on GitHub because she's leaving for a seminar where she wants to show other people how to add integers. She also wants to be able to add more examples to main.R.
 
 :clipboard: Working with alternative versions of the project requires `branches`: a branch is a reference to a commit. You can see the branch you are currently working on in the top-right of the git panel, next to the refresh icon. Alice and Bob were actually on branch main all this time ! While "on branch main", every new commit updates the "main" branch to point to that new commit. 
 
-:computer: Alice and Bob agree that they will work separately on the two files, on two separate branches : Alice creates a branch (git panel > new branch), called "alice-examples" and commit new examples on this branch. Be sure to tick "Sync branch with remote" so that the new branch is also created on GitHub. Bob creates a branch called "bob-optim" and commits an optimized version of their function there.
+:computer: Alice and Bob agree that they will work separately on the two files, on two separate branches : Alice creates a branch (git panel > new branch), called "alice-examples". Be sure to tick "Sync branch with remote" so that the new branch is also created on GitHub. Bob creates a branch called "bob-optim" and commits an optimized version of their function there.
 
 :computer: Alice can thus work on their new examples in main.R while using the old version of R/functions.R and `push` them, while Bob can work on their optimisation in R/main.R and `push` them. Take some time to compare the state of the project between Alice's computer, Bob's computer, the "alice-examples", "main" and "bob-optim" branches on GitHub while you commit the changes and push/pull them.
 
@@ -86,10 +90,15 @@ Bullet points at the start of sections highlight specific topics covered by the 
 
 :clipboard: Reuniting branches with non-trivial differences is hard. To make sure that reuniting will not erase your collaborator's work, it is better to compare branches **as they are on the server** rather than playing around with other people's work locally and then pushing.
 
-:computer: From Alice's GitHub account, go to the server's "alice-examples" branch and create a pull request to Bob's main branch. GitHub will automatically check that the new examples are not erasing any work done by Bob on the main branch. There even is a comment section so that Bob can provide feedback to Alice's changes and agree to `merge` the changes.
+:computer: From Alice's GitHub account, go to the server's "alice-examples" branch and create a pull request to Bob's main branch. GitHub will automatically check that the new examples are not erasing any work done by Bob on the main branch. There even is a comment section so that Bob can provide feedback to Alice's changes and agree to `merge` the changes. Just a heads up: GitHub issues and pull requests in public repositories such as Bob's fork are accessible to anyone with an Internet access, think about what you're posting.
 
 :clipboard: Unlike the fast-forward merge of the previous section, GitHub creates a new commit that unites Alice's branch with the main branch.
 
 :computer: After the PR is merged, Alice and Bob can `pull` the updated main branch and end up with the same version of their two sets of changes on their respective computers.
 
 :golf: If you're done early, feel free to play around a bit more. Here's a challenge: what if Bob and Alice had made changes in the same file instead of having worked separately ? Try it out !
+
+## Bonus - collaborate with the community outside of your team
+
+:golf: Now that Bob's project is working, wouldn't it be great to suggest it as an upgrade to the original repository's maintainer
+ ? Alice or Bob can start the discussion by raising an issue in the [issues](https://github.com/jguerber/intro-git/issues) section, or directly create a pull request to my repository's main branch.
